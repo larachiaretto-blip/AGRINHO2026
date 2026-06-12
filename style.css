@@ -1,1 +1,39 @@
+// 1. Lista (Array) de frases e curiosidades sobre Agricultura e Tecnologia
+const dicasAgro = [
+    "🌱 Sabia que o Paraná é um dos estados que mais utiliza tecnologia de plantio direto no Brasil?",
+    "🛸 Drones agrícolas conseguem escanear um hectare inteiro em busca de pragas em poucos minutos!",
+    "💧 Sensores de umidade no solo ajudam a economizar até 40% da água usada na irrigação.",
+    "🚜 Tratores modernos usam GPS de alta precisão para evitar falhas e não amassar as plantinhas novas.",
+    "🤖 A Inteligência Artificial ajuda a prever o clima e avisa o produtor a hora exata de plantar.",
+    "🌾 Agricultura de precisão significa dar a cada pedaço de terra exatamente o que ele precisa, sem desperdício.",
+    "🐞 Com a tecnologia, cientistas usam 'insetos do bem' para combater pragas, reduzindo o uso de químicos!"
+];
 
+// 2. Mapeamento dos elementos do HTML que vamos usar
+const botao = document.getElementById('btnMensagem');
+const caixaMensagem = document.getElementById('mensagemDinamica');
+
+// 3. Função que escolhe uma dica aleatória e mostra na tela
+function mostrarDicaAleatoria() {
+    // Sorteia um índice aleatório com base no tamanho da nossa lista
+    const indiceAleatorio = Math.floor(Math.random() * dicasAgro.length);
+    
+    // Pega a frase correspondente ao índice sorteado
+    const dicaSorteada = dicasAgro[indiceAleatorio];
+    
+    // Insere a frase dentro do parágrafo do HTML
+    caixaMensagem.textContent = dicaSorteada;
+    
+    // Remove a classe 'escondido' (do CSS) para que a mensagem apareça com estilo
+    caixaMensagem.classList.remove('escondido');
+    
+    // Pequeno efeito visual: piscar de leve a caixa ao trocar de mensagem
+    caixaMensagem.style.opacity = 0;
+    setTimeout(() => {
+        caixaMensagem.style.opacity = 1;
+        caixaMensagem.style.transition = 'opacity 0.3s ease';
+    }, 50);
+}
+
+// 4. Dizemos ao botão para escutar o "clique" do usuário e chamar a função
+botao.addEventListener('click', mostrarDicaAleatoria);
